@@ -3,403 +3,645 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>UCU — Onboarding Completo</title>
+  <title>UCU — Onboarding iOS</title>
   <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#111;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1rem;gap:1.5rem;}
-    .wrap{display:flex;flex-direction:column;align-items:center;gap:1.5rem;}
-    .phone{width:320px;background:#1a1a1a;border-radius:40px;border:2px solid #333;overflow:hidden;display:flex;flex-direction:column;position:relative;}
-    .screen{display:none;flex-direction:column;width:100%;min-height:580px;background:#1c1c1e;position:relative;}
-    .screen.active{display:flex;}
-    .dots{display:flex;gap:8px;justify-content:center;align-items:center;}
-    .dot{width:8px;height:8px;border-radius:50%;background:#444;transition:all .3s;}
-    .dot.active{background:#00bcd4;width:20px;border-radius:4px;}
-    .btn-p{background:#00bcd4;color:#000;border:none;border-radius:12px;padding:14px 24px;font-size:15px;font-weight:600;cursor:pointer;width:100%;transition:opacity .2s;}
-    .btn-p:hover{opacity:.85;}
-    .skip{color:#666;font-size:13px;cursor:pointer;text-align:center;margin-top:8px;}
-    .skip:hover{color:#00bcd4;}
-    .abtn{display:flex;align-items:center;gap:14px;background:#2a2a2e;border:1px solid #444;border-radius:14px;padding:16px 18px;cursor:pointer;transition:border-color .2s;width:100%;}
-    .abtn:hover{border-color:#00bcd4;}
-    .abtn-lbl{color:#fff;font-size:15px;font-weight:400;}
-    .abtn-ico{width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-    .field{display:flex;flex-direction:column;gap:6px;}
-    .field label{color:#aaa;font-size:12px;}
-    .field input{background:#2a2a2e;border:1px solid #444;border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;outline:none;width:100%;}
-    .field input:focus{border-color:#00bcd4;}
-    .chk{display:flex;align-items:center;gap:8px;cursor:pointer;}
-    .chk input{width:16px;height:16px;accent-color:#00bcd4;cursor:pointer;}
-    .chk span{color:#aaa;font-size:13px;}
-    .step-lbl{font-size:11px;color:#00bcd4;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
-    .wi{display:flex;align-items:center;justify-content:space-between;background:#2a2a2e;border-radius:12px;padding:12px 14px;margin-bottom:8px;cursor:pointer;border:1.5px solid transparent;transition:border-color .2s;}
-    .wi.sel{border-color:#00bcd4;}
-    .wl{display:flex;align-items:center;gap:10px;}
-    .wico{width:36px;height:36px;border-radius:8px;background:#1c1c1e;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-    .wlbl{color:#fff;font-size:14px;}
-    .wsub{color:#666;font-size:11px;}
-    .tgl{width:42px;height:24px;border-radius:12px;background:#444;position:relative;transition:background .2s;flex-shrink:0;cursor:pointer;}
-    .tgl.on{background:#00bcd4;}
-    .tgl::after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;left:3px;transition:left .2s;}
-    .tgl.on::after{left:21px;}
-    .nb{display:flex;justify-content:space-around;padding:10px 0 14px;background:#1c1c1e;border-top:.5px solid #333;}
-    .ni{display:flex;flex-direction:column;align-items:center;gap:3px;color:#555;font-size:9px;}
-    .ni.active{color:#00bcd4;}
-    .hint{color:#555;font-size:13px;text-align:center;}
-    .tag{display:inline-block;background:#00bcd420;color:#00bcd4;font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;margin-bottom:8px;letter-spacing:.5px;text-transform:uppercase;}
-    .divider{display:flex;align-items:center;gap:10px;margin:4px 0;}
-    .divider::before,.divider::after{content:"";flex:1;height:1px;background:#333;}
-    .divider span{color:#555;font-size:11px;}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",sans-serif;background:#000;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem 1rem;}
+.phone{width:393px;height:852px;background:#1c1c1e;border-radius:54px;border:10px solid #1a1a1a;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 0 0 1px #333,0 40px 80px rgba(0,0,0,.8);}
+.screen{display:none;flex-direction:column;width:100%;height:100%;background:#1c1c1e;position:relative;overflow:hidden;}
+.screen.active{display:flex;}
+.scroll-content{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;}
+.scroll-content::-webkit-scrollbar{display:none;}
+.pad{padding:0 24px;}
+.btn-p{background:#00bcd4;color:#000;border:none;border-radius:14px;padding:16px 24px;font-size:17px;font-weight:600;cursor:pointer;width:100%;letter-spacing:-.3px;transition:opacity .15s;}
+.btn-p:active{opacity:.8;}
+.btn-ghost{background:rgba(255,255,255,0.06);color:#fff;border:none;border-radius:14px;padding:16px 24px;font-size:17px;font-weight:400;cursor:pointer;width:100%;letter-spacing:-.3px;transition:opacity .15s;}
+.btn-ghost:active{opacity:.7;}
+.skip{color:#00bcd4;font-size:15px;cursor:pointer;text-align:center;padding:12px 0;}
+.abtn{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.12);border-radius:16px;padding:18px 20px;cursor:pointer;transition:background .15s;width:100%;}
+.abtn:active{background:rgba(255,255,255,0.1);}
+.abtn-lbl{color:#fff;font-size:16px;font-weight:400;letter-spacing:-.2px;text-align:left;}
+.abtn-ico{width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.field{display:flex;flex-direction:column;gap:8px;}
+.field label{color:rgba(255,255,255,0.5);font-size:13px;font-weight:500;letter-spacing:.2px;text-transform:uppercase;}
+.field input{background:rgba(255,255,255,0.07);border:.5px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px 16px;color:#fff;font-size:16px;outline:none;width:100%;-webkit-appearance:none;letter-spacing:-.2px;}
+.field input:focus{border-color:#00bcd4;background:rgba(0,188,212,0.05);}
+.field input::placeholder{color:rgba(255,255,255,0.25);}
+.chkrow{display:flex;align-items:center;gap:10px;cursor:pointer;padding:4px 0;}
+.chkrow input{width:20px;height:20px;accent-color:#00bcd4;cursor:pointer;flex-shrink:0;}
+.chkrow span{color:rgba(255,255,255,0.6);font-size:15px;}
+.step-lbl{font-size:12px;color:#00bcd4;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+.wi{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.06);border-radius:14px;padding:14px 16px;margin-bottom:8px;cursor:pointer;border:1.5px solid transparent;transition:border-color .2s,background .2s;}
+.wi.sel{border-color:#00bcd4;background:rgba(0,188,212,0.06);}
+.wl{display:flex;align-items:center;gap:12px;}
+.wico{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.wlbl{color:#fff;font-size:15px;letter-spacing:-.2px;}
+.wsub{color:rgba(255,255,255,0.4);font-size:12px;margin-top:2px;}
+.tgl{width:50px;height:30px;border-radius:15px;background:rgba(255,255,255,0.15);position:relative;transition:background .25s;flex-shrink:0;cursor:pointer;}
+.tgl.on{background:#00bcd4;}
+.tgl::after{content:"";position:absolute;width:26px;height:26px;border-radius:50%;background:#fff;top:2px;left:2px;transition:left .25s;box-shadow:0 2px 4px rgba(0,0,0,.3);}
+.tgl.on::after{left:22px;}
+.nb{display:flex;justify-content:space-around;padding:12px 0 8px;background:#1c1c1e;border-top:.5px solid rgba(255,255,255,0.1);}
+.ni{display:flex;flex-direction:column;align-items:center;gap:4px;color:rgba(255,255,255,0.4);font-size:10px;letter-spacing:.2px;cursor:pointer;}
+.ni.active{color:#00bcd4;}
+.back-btn{display:flex;align-items:center;gap:6px;color:#00bcd4;font-size:17px;background:none;border:none;cursor:pointer;padding:0;}
+.tag{display:inline-block;background:rgba(0,188,212,0.15);color:#00bcd4;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;}
+.section-title{font-size:28px;font-weight:700;color:#fff;letter-spacing:-.5px;line-height:1.2;}
+.section-sub{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.5;letter-spacing:-.1px;}
+.divider{height:.5px;background:rgba(255,255,255,0.1);margin:4px 0;}
+.info-link{color:rgba(255,255,255,0.35);font-size:13px;text-align:center;text-decoration:underline;cursor:pointer;padding:8px 0;}
+
+/* Modal overlay */
+.modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center;z-index:100;backdrop-filter:blur(4px);}
+.modal-overlay.show{display:flex;}
+.modal-box{background:#2c2c2e;border-radius:20px 20px 0 0;padding:28px 24px 40px;width:100%;}
+.modal-title{font-size:18px;font-weight:600;color:#fff;margin-bottom:8px;letter-spacing:-.3px;}
+.modal-body{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.5;margin-bottom:24px;}
+.modal-btn-row{display:flex;gap:10px;}
+.modal-btn-row button{flex:1;padding:14px;border-radius:14px;font-size:16px;font-weight:600;cursor:pointer;border:none;}
+.modal-ok{background:#00bcd4;color:#000;}
+.modal-cancel{background:rgba(255,255,255,0.1);color:#fff;}
+
   </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="phone">
+<div class="phone">
 
-    <!-- S1: ¿Primera vez? -->
-    <div class="screen active" id="s1" style="justify-content:space-between;padding:48px 28px 36px;">
-      <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0.07;">
-  <svg width="320" height="640" viewBox="0 0 320 640" fill="none">
-    <circle cx="40" cy="120" r="30" stroke="white" stroke-width="1.5" fill="none"/>
-    <polygon points="230,80 270,80 250,50" stroke="white" stroke-width="1.5" fill="none"/>
-    <circle cx="160" cy="200" r="18" stroke="white" stroke-width="1" fill="none"/>
-    <path d="M20 420 Q40 410 60 420 Q80 430 100 420 Q120 410 140 420" stroke="white" stroke-width="1.5" fill="none"/>
-    <path d="M20 435 Q40 425 60 435 Q80 445 100 435 Q120 425 140 435" stroke="white" stroke-width="1.5" fill="none"/>
-    <path d="M20 450 Q40 440 60 450 Q80 460 100 450 Q120 440 140 450" stroke="white" stroke-width="1.5" fill="none"/>
-    <circle cx="260" cy="500" r="22" stroke="white" stroke-width="1" fill="none"/>
-  </svg>
-</div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;flex:1;justify-content:center;position:relative;">
-        <img src="data:image/png;base64,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" style="width:200px;" alt="UCU Logo" />
-        <div style="font-size:22px;font-weight:500;color:#fff;margin-top:8px;">¿Es tu primera vez<br>en la app UCU?</div>
-        <div style="font-size:13px;color:#888;text-align:center;line-height:1.6;">Tu respuesta nos ayuda a darte la mejor experiencia de inicio.</div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;width:100%;position:relative;">
-        <button class="btn-p" onclick="goTo('s2')">Sí, es mi primera vez</button>
-        <button style="background:transparent;color:#fff;border:1px solid #444;border-radius:12px;padding:14px;font-size:15px;cursor:pointer;width:100%;transition:border-color .2s;" onmouseover="this.style.borderColor='#00bcd4'" onmouseout="this.style.borderColor='#444'" onclick="goTo('s_no_login')">No, ya la usé antes</button>
+
+<!-- S1: ¿Primera vez? -->
+<div class="screen active" id="s1">
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0.06;">
+<svg width="393" height="852" viewBox="0 0 393 852" fill="none">
+<circle cx="50" cy="160" r="38" stroke="white" stroke-width="1.5" fill="none"/>
+<polygon points="290,100 340,100 315,65" stroke="white" stroke-width="1.5" fill="none"/>
+<circle cx="200" cy="260" r="22" stroke="white" stroke-width="1" fill="none"/>
+<path d="M20 560 Q50 548 80 560 Q110 572 140 560 Q170 548 200 560" stroke="white" stroke-width="1.5" fill="none"/>
+<path d="M20 578 Q50 566 80 578 Q110 590 140 578 Q170 566 200 578" stroke="white" stroke-width="1.5" fill="none"/>
+<path d="M20 596 Q50 584 80 596 Q110 608 140 596 Q170 584 200 596" stroke="white" stroke-width="1.5" fill="none"/>
+<circle cx="330" cy="660" r="28" stroke="white" stroke-width="1" fill="none"/>
+</svg></div>
+  <div style="height:59px;display:flex;align-items:flex-end;padding:0 28px 12px;flex-shrink:0;position:relative;z-index:10;">
+  <div style="font-size:15px;font-weight:600;color:#fff;">9:41</div>
+  <div style="flex:1;"></div>
+  <div style="display:flex;align-items:center;gap:6px;">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.7 11 0.5 8 0.5C5 0.5 2.4 1.7 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" fill="white"/><path d="M8 5.6C9.6 5.6 11 6.2 12.1 7.2L13.5 5.8C12 4.5 10.1 3.7 8 3.7C5.9 3.7 4 4.5 2.5 5.8L3.9 7.2C5 6.2 6.4 5.6 8 5.6Z" fill="white"/><circle cx="8" cy="10" r="1.5" fill="white"/></svg>
+    <div style="display:flex;align-items:center;gap:2px;">
+      <div style="width:25px;height:12px;border:1.5px solid rgba(255,255,255,0.7);border-radius:3px;padding:1.5px;display:flex;align-items:center;">
+        <div style="width:16px;height:7px;background:#34c759;border-radius:1.5px;"></div>
       </div>
     </div>
-
-    <!-- S2: Acceso primera vez (SI) -->
-    <div class="screen" id="s2" style="justify-content:space-between;padding:48px 24px 36px;">
-      <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0.07;">
-  <svg width="320" height="640" viewBox="0 0 320 640" fill="none">
-    <circle cx="40" cy="120" r="30" stroke="white" stroke-width="1.5" fill="none"/>
-    <polygon points="230,80 270,80 250,50" stroke="white" stroke-width="1.5" fill="none"/>
-    <circle cx="160" cy="200" r="18" stroke="white" stroke-width="1" fill="none"/>
-    <path d="M20 420 Q40 410 60 420 Q80 430 100 420 Q120 410 140 420" stroke="white" stroke-width="1.5" fill="none"/>
-    <path d="M20 435 Q40 425 60 435 Q80 445 100 435 Q120 425 140 435" stroke="white" stroke-width="1.5" fill="none"/>
-    <path d="M20 450 Q40 440 60 450 Q80 460 100 450 Q120 440 140 450" stroke="white" stroke-width="1.5" fill="none"/>
-    <circle cx="260" cy="500" r="22" stroke="white" stroke-width="1" fill="none"/>
-  </svg>
-</div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:20px;flex:1;justify-content:center;position:relative;">
-        <img src="data:image/png;base64,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" style="width:200px;" alt="UCU Logo" />
-        <div style="font-size:15px;color:#ccc;text-align:center;">Elige tu forma de acceso</div>
-        <div style="display:flex;flex-direction:column;gap:10px;width:100%;">
-          <button class="abtn" onclick="goTo('s_ucu_onb')"><div class="abtn-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="white" stroke-width="1.5"/><line x1="8" y1="4" x2="8" y2="18" stroke="white" stroke-width="1.5"/><line x1="3" y1="9" x2="21" y2="9" stroke="white" stroke-width="1"/><line x1="12" y1="13" x2="18" y2="13" stroke="white" stroke-width="1"/></svg></div><span class="abtn-lbl">Usuario UCU</span></button>
-          <button class="abtn" onclick="goTo('s3')"><div class="abtn-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="white" stroke-width="1.5"/><line x1="12" y1="8" x2="12" y2="16" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div><span class="abtn-lbl">Crear usuario app</span></button>
-          <button class="abtn" onclick="goTo('s_listo')"><div class="abtn-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 7C8 9.2 9.8 11 12 11C14.2 11 16 9.2 16 7C16 4.8 14.2 3 12 3C9.8 3 8 4.8 8 7Z" stroke="white" stroke-width="1.5" fill="none"/><path d="M4 21C4 17.7 7.6 15 12 15C16.4 15 20 17.7 20 21" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span class="abtn-lbl">Invitados</span></button>
-        </div>
-      </div>
-      <div style="position:relative;">
-        <div class="hint" style="text-decoration:underline;cursor:pointer;">Info acceso</div>
-        <div class="skip" onclick="goTo('s1')">← Volver</div>
-      </div>
-    </div>
-
-    <!-- S3: Crear usuario app (desde SI) -->
-    <div class="screen" id="s3" style="justify-content:space-between;padding:40px 24px 32px;">
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        <span class="tag">Crear cuenta app</span>
-        <div style="font-size:20px;font-weight:500;color:#fff;">Crear cuenta</div>
-        <div style="font-size:13px;color:#888;line-height:1.5;">Ingresá tus datos para registrarte en la app UCU.</div>
-        <div class="field"><label>Nombre completo</label><input id="nombre" type="text" placeholder="Tu nombre"/></div>
-        <div class="field"><label>Correo electrónico</label><input id="email_c" type="email" placeholder="tu@email.com"/></div>
-        <div class="field"><label>Contraseña</label><input id="pass_c" type="password" placeholder="••••••••"/></div>
-        <div class="field"><label>Confirmar contraseña</label><input id="pass_c2" type="password" placeholder="••••••••"/></div>
-        <label class="chk"><input type="checkbox" checked/><span>Recordar contraseña</span></label>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <button class="btn-p" onclick="goTo('s_ucu_onb')">Crear cuenta</button>
-        <div class="skip" onclick="goTo('s2')">← Volver</div>
-      </div>
-    </div>
-
-    <!-- S_UCU_ONB: Usuario UCU → va al onboarding (pantalla de info) -->
-    <div class="screen" id="s_ucu_onb" style="justify-content:space-between;padding:40px 24px 32px;">
-      <div style="display:flex;flex-direction:column;gap:12px;flex:1;">
-        <span class="tag">Usuario UCU</span>
-        <div style="font-size:20px;font-weight:500;color:#fff;">Iniciá sesión con tu usuario UCU</div>
-        <div style="font-size:13px;color:#888;line-height:1.5;">Usá tu usuario y contraseña institucional para acceder.</div>
-        <div class="field"><label>Usuario UCU</label><input id="ucu_user" type="text" placeholder="usuario@ucu.edu.uy"/></div>
-        <div class="field"><label>Contraseña</label><input id="ucu_pass" type="password" placeholder="••••••••"/></div>
-        <label class="chk"><input type="checkbox" checked/><span>Recordar contraseña</span></label>
-        <div style="background:#23232a;border-radius:12px;padding:12px 14px;border-left:3px solid #00bcd4;margin-top:4px;">
-          <div style="color:#00bcd4;font-size:12px;font-weight:600;margin-bottom:3px;">¿Problemas para acceder?</div>
-          <div style="color:#888;font-size:12px;">Contactá soporte desde Servicios → Soporte.</div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-top:16px;">
-        <button class="btn-p" onclick="goTo('s4')">Continuar al onboarding</button>
-        <div class="skip" onclick="goTo('s2')">← Volver</div>
-      </div>
-    </div>
-
-    <!-- S4: Onboarding 1/4 — Cursos -->
-    <div class="screen" id="s4" style="padding:40px 24px 28px;justify-content:space-between;">
-      <div style="flex:1;">
-        <div class="step-lbl">1 de 4</div>
-        <div style="font-size:22px;font-weight:500;color:#fff;margin-bottom:10px;">Tus cursos al instante</div>
-        <div style="font-size:14px;color:#888;line-height:1.6;margin-bottom:20px;">Consultá tus materias, horarios y fechas de examen sin perder tiempo.</div>
-        <div style="background:#23232a;border-radius:14px;padding:14px;border-left:3px solid #00bcd4;margin-bottom:10px;">
-          <div style="color:#00bcd4;font-size:12px;margin-bottom:8px;">⏰  Mi horario — Martes 14</div>
-          <div style="background:#2a2a35;border-radius:10px;padding:12px;">
-            <div style="color:#00bcd4;font-size:12px;">08:00 – 10:50</div>
-            <div style="color:#fff;font-size:13px;font-weight:500;margin-top:4px;">Análisis de Plataformas Digitales</div>
-            <div style="color:#666;font-size:11px;margin-top:2px;">Salón 012</div>
-          </div>
-        </div>
-        <div style="background:#23232a;border-radius:14px;padding:14px;border-left:3px solid #7c5cbf;">
-          <div style="color:#7c5cbf;font-size:12px;margin-bottom:8px;">⭐  Mis calificaciones</div>
-          <div style="display:flex;gap:8px;">
-            <div style="background:#2a2a35;border-radius:10px;padding:10px;flex:1;"><div style="color:#fff;font-size:18px;font-weight:600;">3</div><div style="color:#aaa;font-size:10px;margin-top:2px;">Programación II</div></div>
-            <div style="background:#2a2a35;border-radius:10px;padding:10px;flex:1;"><div style="color:#fff;font-size:18px;font-weight:600;">3</div><div style="color:#aaa;font-size:10px;margin-top:2px;">Sistemas Op.</div></div>
-          </div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <button class="btn-p" onclick="goTo('s5')">Siguiente</button>
-        <div class="skip" onclick="goTo('s_ucu_onb')">← Volver</div>
-      </div>
-    </div>
-
-    <!-- S5: Onboarding 2/4 — Servicios -->
-    <div class="screen" id="s5" style="padding:40px 24px 28px;justify-content:space-between;">
-      <div style="flex:1;">
-        <div class="step-lbl">2 de 4</div>
-        <div style="font-size:22px;font-weight:500;color:#fff;margin-bottom:10px;">Todo lo que necesitás</div>
-        <div style="font-size:14px;color:#888;line-height:1.6;margin-bottom:16px;">Accedé a todos los servicios universitarios desde Servicios.</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <div style="background:#23232a;border-radius:12px;padding:12px;border:.5px solid #333;"><div style="color:#00bcd4;font-size:18px;margin-bottom:4px;">📋</div><div style="color:#fff;font-size:12px;font-weight:500;">Inscripción a cursos</div></div>
-          <div style="background:#23232a;border-radius:12px;padding:12px;border:.5px solid #333;"><div style="color:#00bcd4;font-size:18px;margin-bottom:4px;">🗺️</div><div style="color:#fff;font-size:12px;font-weight:500;">Mapa del campus</div></div>
-          <div style="background:#23232a;border-radius:12px;padding:12px;border:.5px solid #333;"><div style="color:#00bcd4;font-size:18px;margin-bottom:4px;">💼</div><div style="color:#fff;font-size:12px;font-weight:500;">Portal Laboral</div></div>
-          <div style="background:#23232a;border-radius:12px;padding:12px;border:.5px solid #333;"><div style="color:#00bcd4;font-size:18px;margin-bottom:4px;">🎓</div><div style="color:#fff;font-size:12px;font-weight:500;">Evaluación docente</div></div>
-          <div style="background:#23232a;border-radius:12px;padding:12px;border:.5px solid #333;"><div style="color:#00bcd4;font-size:18px;margin-bottom:4px;">❤️</div><div style="color:#fff;font-size:12px;font-weight:500;">Comunidad sana</div></div>
-          <div style="background:#23232a;border-radius:12px;padding:12px;border:.5px solid #333;"><div style="color:#00bcd4;font-size:18px;margin-bottom:4px;">🎁</div><div style="color:#fff;font-size:12px;font-weight:500;">Beneficios</div></div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
-        <button class="btn-p" onclick="goTo('s6')">Siguiente</button>
-        <div class="skip" onclick="goTo('s4')">← Volver</div>
-      </div>
-    </div>
-
-    <!-- S6: Onboarding 3/4 — Notificaciones -->
-    <div class="screen" id="s6" style="padding:40px 24px 28px;justify-content:space-between;">
-      <div style="flex:1;display:flex;flex-direction:column;gap:16px;">
-        <div><div class="step-lbl">3 de 4</div>
-        <div style="font-size:22px;font-weight:500;color:#fff;margin-bottom:8px;">No te pierdas nada</div>
-        <div style="font-size:14px;color:#888;line-height:1.6;">Activá notificaciones para exámenes, inscripciones y novedades UCU.</div></div>
-        <div style="width:64px;height:64px;border-radius:50%;background:#23232a;display:flex;align-items:center;justify-content:center;align-self:center;">
-          <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><path d="M20 6C13 6 8 11 8 18V28H32V18C32 11 27 6 20 6Z" stroke="#00bcd4" stroke-width="2" fill="none"/><rect x="16" y="28" width="8" height="4" rx="2" fill="#00bcd4"/><line x1="20" y1="2" x2="20" y2="6" stroke="#00bcd4" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
-        <div style="background:#23232a;border-radius:14px;padding:14px;border:.5px solid #333;">
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:.5px solid #333;">
-            <div><div style="color:#fff;font-size:13px;">Fechas de examen</div><div style="color:#666;font-size:11px;">Recordatorios 24h antes</div></div>
-            <div class="tgl on" onclick="this.classList.toggle('on')"></div>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:.5px solid #333;">
-            <div><div style="color:#fff;font-size:13px;">Inscripciones abiertas</div><div style="color:#666;font-size:11px;">Alertas de nuevas cursadas</div></div>
-            <div class="tgl on" onclick="this.classList.toggle('on')"></div>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;">
-            <div><div style="color:#fff;font-size:13px;">Noticias UCU</div><div style="color:#666;font-size:11px;">Novedades institucionales</div></div>
-            <div class="tgl" onclick="this.classList.toggle('on')"></div>
-          </div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
-        <button class="btn-p" onclick="goTo('s7')">Siguiente</button>
-        <div class="skip" onclick="goTo('s5')">← Volver</div>
-      </div>
-    </div>
-
-    <!-- S7: Onboarding 4/4 — Personalizá tu inicio -->
-    <div class="screen" id="s7" style="padding:32px 20px 24px;justify-content:space-between;">
-      <div style="flex:1;overflow:auto;">
-        <div class="step-lbl">4 de 4</div>
-        <div style="font-size:20px;font-weight:500;color:#fff;margin-bottom:6px;">Personalizá tu inicio</div>
-        <div style="font-size:13px;color:#888;line-height:1.5;margin-bottom:12px;">Elegí qué widgets querés ver en tu pantalla de inicio.</div>
-        <div class="wi sel" data-id="horario" onclick="toggleW(this)">
-          <div class="wl"><div class="wico"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#00bcd4" stroke-width="1.5"/><polyline points="9,5 9,9 12,11" stroke="#00bcd4" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="wlbl">Mi horario</div><div class="wsub">Clases del día</div></div></div>
-          <div class="tgl on" id="wt-horario"></div></div><div class="wi sel" data-id="calificaciones" onclick="toggleW(this)">
-          <div class="wl"><div class="wico"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><polygon points="9,2 11,7 17,7 12,11 14,17 9,13 4,17 6,11 1,7 7,7" stroke="#00bcd4" stroke-width="1.5" fill="none"/></svg></div><div><div class="wlbl">Mis calificaciones</div><div class="wsub">Notas por curso</div></div></div>
-          <div class="tgl on" id="wt-calificaciones"></div></div><div class="wi sel" data-id="inscripcion" onclick="toggleW(this)">
-          <div class="wl"><div class="wico"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="12" rx="2" stroke="#00bcd4" stroke-width="1.5"/><line x1="2" y1="7" x2="16" y2="7" stroke="#00bcd4" stroke-width="1"/><line x1="6" y1="3" x2="6" y2="7" stroke="#00bcd4" stroke-width="1.5"/><line x1="12" y1="3" x2="12" y2="7" stroke="#00bcd4" stroke-width="1.5"/></svg></div><div><div class="wlbl">Inscripción a cursos</div><div class="wsub">Citas y plazos</div></div></div>
-          <div class="tgl on" id="wt-inscripcion"></div></div><div class="wi " data-id="actividades" onclick="toggleW(this)">
-          <div class="wl"><div class="wico"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="4" width="7" height="5" rx="1" stroke="#00bcd4" stroke-width="1.5"/><rect x="10" y="4" width="7" height="5" rx="1" stroke="#00bcd4" stroke-width="1.5"/><rect x="1" y="11" width="7" height="5" rx="1" stroke="#00bcd4" stroke-width="1.5"/><rect x="10" y="11" width="7" height="5" rx="1" stroke="#00bcd4" stroke-width="1.5"/></svg></div><div><div class="wlbl">Actividades UCU</div><div class="wsub">Eventos del campus</div></div></div>
-          <div class="tgl " id="wt-actividades"></div></div><div class="wi " data-id="noticias" onclick="toggleW(this)">
-          <div class="wl"><div class="wico"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="12" rx="2" stroke="#00bcd4" stroke-width="1.5"/><line x1="5" y1="7" x2="13" y2="7" stroke="#00bcd4" stroke-width="1"/><line x1="5" y1="10" x2="10" y2="10" stroke="#00bcd4" stroke-width="1"/></svg></div><div><div class="wlbl">Noticias UCU</div><div class="wsub">Novedades institucionales</div></div></div>
-          <div class="tgl " id="wt-noticias"></div></div><div class="wi " data-id="favoritos" onclick="toggleW(this)">
-          <div class="wl"><div class="wico"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3C6 5 3 8 3 11C3 13.8 5.7 16 9 16C12.3 16 15 13.8 15 11C15 8 12 5 9 3Z" stroke="#00bcd4" stroke-width="1.5" fill="none"/></svg></div><div><div class="wlbl">Mis favoritos</div><div class="wsub">Accesos rápidos</div></div></div>
-          <div class="tgl " id="wt-favoritos"></div></div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
-        <button class="btn-p" onclick="goTo('s8')">¡Listo, entrar a la app!</button>
-        <div class="skip" onclick="goTo('s6')">← Volver</div>
-      </div>
-    </div>
-
-    <!-- S8: ¡Todo listo! -->
-    <div class="screen" id="s8" style="justify-content:space-between;padding:0;">
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;gap:16px;">
-        <div style="width:72px;height:72px;border-radius:50%;background:#00bcd420;display:flex;align-items:center;justify-content:center;">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="#00bcd4" stroke-width="2"/><polyline points="10,18 16,24 26,13" stroke="#00bcd4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div style="font-size:22px;font-weight:500;color:#fff;text-align:center;">¡Todo listo!</div>
-        <div style="font-size:14px;color:#888;text-align:center;line-height:1.6;">Tu app UCU está configurada. Podés cambiar la personalización desde ajustes cuando quieras.</div>
-        <div style="background:#23232a;border-radius:14px;padding:16px;width:100%;">
-          <div style="color:#00bcd4;font-size:12px;font-weight:600;margin-bottom:10px;">Tu inicio tendrá:</div>
-          <div id="summary" style="display:flex;flex-direction:column;gap:6px;"></div>
-        </div>
-      </div>
-      <div style="padding:0 24px 32px;width:100%;">
-        <button class="btn-p" style="font-size:16px;" onclick="alert('¡Bienvenido a la app UCU!')">Ir al inicio</button>
-      </div>
-      <div class="nb"><div class="ni active"><div style="font-size:18px;">🏠</div><div>Inicio</div></div><div class="ni"><div style="font-size:18px;">🤍</div><div>Favoritos</div></div><div class="ni"><div style="font-size:18px;">🔔</div><div>Notificaciones</div></div><div class="ni"><div style="font-size:18px;">☰</div><div>Servicios</div></div></div>
-    </div>
-
-    <!-- S_LISTO: Acceso invitado / rápido (sin onboarding) -->
-    <div class="screen" id="s_listo" style="justify-content:space-between;padding:0;">
-      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;gap:16px;">
-        <div style="width:72px;height:72px;border-radius:50%;background:#00bcd420;display:flex;align-items:center;justify-content:center;">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="#00bcd4" stroke-width="2"/><polyline points="10,18 16,24 26,13" stroke="#00bcd4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div style="font-size:22px;font-weight:500;color:#fff;">¡Bienvenido!</div>
-        <div style="font-size:14px;color:#888;text-align:center;line-height:1.6;">Accedés como invitado. Algunas funciones requieren iniciar sesión.</div>
-      </div>
-      <div style="padding:0 24px 32px;width:100%;">
-        <button class="btn-p" onclick="alert('Entrando como invitado...')">Ir al inicio</button>
-      </div>
-      <div class="nb"><div class="ni active"><div style="font-size:18px;">🏠</div><div>Inicio</div></div><div class="ni"><div style="font-size:18px;">🤍</div><div>Favoritos</div></div><div class="ni"><div style="font-size:18px;">🔔</div><div>Notificaciones</div></div><div class="ni"><div style="font-size:18px;">☰</div><div>Servicios</div></div></div>
-    </div>
-
-    <!-- S_NO_LOGIN: Acceso segunda vez (NO en primera pregunta) -->
-    <div class="screen" id="s_no_login" style="justify-content:space-between;padding:48px 24px 36px;">
-      <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0.07;">
-  <svg width="320" height="640" viewBox="0 0 320 640" fill="none">
-    <circle cx="40" cy="120" r="30" stroke="white" stroke-width="1.5" fill="none"/>
-    <polygon points="230,80 270,80 250,50" stroke="white" stroke-width="1.5" fill="none"/>
-    <circle cx="160" cy="200" r="18" stroke="white" stroke-width="1" fill="none"/>
-    <path d="M20 420 Q40 410 60 420 Q80 430 100 420 Q120 410 140 420" stroke="white" stroke-width="1.5" fill="none"/>
-    <path d="M20 435 Q40 425 60 435 Q80 445 100 435 Q120 425 140 435" stroke="white" stroke-width="1.5" fill="none"/>
-    <path d="M20 450 Q40 440 60 450 Q80 460 100 450 Q120 440 140 450" stroke="white" stroke-width="1.5" fill="none"/>
-    <circle cx="260" cy="500" r="22" stroke="white" stroke-width="1" fill="none"/>
-  </svg>
-</div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:20px;flex:1;justify-content:center;position:relative;">
-        <img src="data:image/png;base64,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" style="width:200px;" alt="UCU Logo" />
-        <div style="font-size:15px;color:#ccc;text-align:center;">Elige tu forma de acceso</div>
-        <div style="display:flex;flex-direction:column;gap:10px;width:100%;">
-          <button class="abtn" onclick="goTo('s_ucu_app')"><div class="abtn-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="white" stroke-width="1.5"/><line x1="8" y1="4" x2="8" y2="18" stroke="white" stroke-width="1.5"/><line x1="3" y1="9" x2="21" y2="9" stroke="white" stroke-width="1"/><line x1="12" y1="13" x2="18" y2="13" stroke="white" stroke-width="1"/></svg></div><span class="abtn-lbl">Usuario UCU</span></button>
-          <button class="abtn" onclick="goTo('s_ya_tengo')"><div class="abtn-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="white" stroke-width="1.5"/><circle cx="12" cy="10" r="3" stroke="white" stroke-width="1.5" fill="none"/><path d="M6 19C6 16.2 8.7 14 12 14C15.3 14 18 16.2 18 19" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span class="abtn-lbl">Usuario App</span></button>
-          <button class="abtn" onclick="goTo('s_listo')"><div class="abtn-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 7C8 9.2 9.8 11 12 11C14.2 11 16 9.2 16 7C16 4.8 14.2 3 12 3C9.8 3 8 4.8 8 7Z" stroke="white" stroke-width="1.5" fill="none"/><path d="M4 21C4 17.7 7.6 15 12 15C16.4 15 20 17.7 20 21" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span class="abtn-lbl">Invitados</span></button>
-        </div>
-      </div>
-      <div style="position:relative;">
-        <div class="hint" style="text-decoration:underline;cursor:pointer;">Info acceso</div>
-        <div class="skip" onclick="goTo('s1')">← Volver</div>
-      </div>
-    </div>
-
-    <!-- S_UCU_APP: Login con usuario UCU (desde NO) -->
-    <div class="screen" id="s_ucu_app" style="padding:40px 24px 32px;justify-content:space-between;">
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        <span class="tag">Usuario UCU</span>
-        <div style="font-size:20px;font-weight:500;color:#fff;">Iniciar sesión</div>
-        <div style="font-size:13px;color:#888;line-height:1.5;">Ingresá tu correo y contraseña de la app UCU.</div>
-        <div class="field"><label>Correo electrónico</label><input id="email_l" type="email" placeholder="tu@email.com"/></div>
-        <div class="field"><label>Contraseña</label><input id="pass_l" type="password" placeholder="••••••••"/></div>
-        <label class="chk"><input type="checkbox" checked/><span>Recordar contraseña</span></label>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <button class="btn-p" onclick="goTo('s_listo')">Ingresar</button>
-        <div class="skip" onclick="goTo('s_no_login')">← Volver</div>
-      </div>
-    </div>
-
-    <!-- S_YA_TENGO: ¿Ya tengo cuenta app o crear? -->
-    <div class="screen" id="s_ya_tengo" style="justify-content:space-between;padding:48px 24px 36px;">
-      <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0.07;">
-  <svg width="320" height="640" viewBox="0 0 320 640" fill="none">
-    <circle cx="40" cy="120" r="30" stroke="white" stroke-width="1.5" fill="none"/>
-    <polygon points="230,80 270,80 250,50" stroke="white" stroke-width="1.5" fill="none"/>
-    <circle cx="160" cy="200" r="18" stroke="white" stroke-width="1" fill="none"/>
-    <path d="M20 420 Q40 410 60 420 Q80 430 100 420 Q120 410 140 420" stroke="white" stroke-width="1.5" fill="none"/>
-    <path d="M20 435 Q40 425 60 435 Q80 445 100 435 Q120 425 140 435" stroke="white" stroke-width="1.5" fill="none"/>
-    <path d="M20 450 Q40 440 60 450 Q80 460 100 450 Q120 440 140 450" stroke="white" stroke-width="1.5" fill="none"/>
-    <circle cx="260" cy="500" r="22" stroke="white" stroke-width="1" fill="none"/>
-  </svg>
-</div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:20px;flex:1;justify-content:center;position:relative;">
-        <img src="data:image/png;base64,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" style="width:200px;" alt="UCU Logo" />
-        <div style="font-size:16px;color:#fff;font-weight:500;text-align:center;">Usuario App</div>
-        <div style="font-size:13px;color:#888;text-align:center;">¿Ya tenés una cuenta creada en la app?</div>
-        <div style="display:flex;flex-direction:column;gap:10px;width:100%;">
-          <button class="abtn" onclick="goTo('s_login_app')"><div class="abtn-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="white" stroke-width="1.5"/><circle cx="12" cy="10" r="3" stroke="white" stroke-width="1.5" fill="none"/><path d="M6 19C6 16.2 8.7 14 12 14C15.3 14 18 16.2 18 19" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><span class="abtn-lbl">Ya tengo usuario app</span></button>
-          <button class="abtn" onclick="goTo('s_crear_app')"><div class="abtn-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="white" stroke-width="1.5"/><line x1="12" y1="8" x2="12" y2="16" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div><span class="abtn-lbl">Crear usuario app</span></button>
-        </div>
-      </div>
-      <div class="skip" onclick="goTo('s_no_login')" style="position:relative;">← Volver</div>
-    </div>
-
-    <!-- S_LOGIN_APP: Login con usuario app -->
-    <div class="screen" id="s_login_app" style="padding:40px 24px 32px;justify-content:space-between;">
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        <span class="tag">Usuario App</span>
-        <div style="font-size:20px;font-weight:500;color:#fff;">Iniciar sesión</div>
-        <div style="font-size:13px;color:#888;line-height:1.5;">Ingresá tu correo y contraseña de la app UCU.</div>
-        <div class="field"><label>Correo electrónico</label><input id="email_l" type="email" placeholder="tu@email.com"/></div>
-        <div class="field"><label>Contraseña</label><input id="pass_l" type="password" placeholder="••••••••"/></div>
-        <label class="chk"><input type="checkbox" checked/><span>Recordar contraseña</span></label>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <button class="btn-p" onclick="goTo('s_listo')">Ingresar</button>
-        <div class="skip" onclick="goTo('s_ya_tengo')">← Volver</div>
-      </div>
-    </div>
-
-    <!-- S_CREAR_APP: Crear cuenta app (desde NO) -->
-    <div class="screen" id="s_crear_app" style="padding:40px 24px 32px;justify-content:space-between;">
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        <span class="tag">Crear cuenta app</span>
-        <div style="font-size:20px;font-weight:500;color:#fff;">Crear cuenta</div>
-        <div style="font-size:13px;color:#888;line-height:1.5;">Ingresá tus datos para registrarte en la app UCU.</div>
-        <div class="field"><label>Nombre completo</label><input id="nombre" type="text" placeholder="Tu nombre"/></div>
-        <div class="field"><label>Correo electrónico</label><input id="email_c" type="email" placeholder="tu@email.com"/></div>
-        <div class="field"><label>Contraseña</label><input id="pass_c" type="password" placeholder="••••••••"/></div>
-        <div class="field"><label>Confirmar contraseña</label><input id="pass_c2" type="password" placeholder="••••••••"/></div>
-        <label class="chk"><input type="checkbox" checked/><span>Recordar contraseña</span></label>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <button class="btn-p" onclick="goTo('s_listo')">Crear cuenta</button>
-        <div class="skip" onclick="goTo('s_ya_tengo')">← Volver</div>
-      </div>
-    </div>
-
   </div>
-  <div class="hint">Navegá usando los botones de cada pantalla</div>
+</div>
+  <div class="scroll-content pad" style="display:flex;flex-direction:column;justify-content:center;gap:24px;flex:1;padding-top:0;">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;">
+      <img src="data:image/png;base64,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" style="width:190px;" alt="UCU Logo"/>
+      <div class="section-title" style="font-size:26px;">¿Es tu primera vez<br>en la app UCU?</div>
+      <div class="section-sub">Tu respuesta nos ayuda a darte la mejor experiencia.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <button class="btn-p" onclick="goTo('s2_si')">Sí, es mi primera vez</button>
+      <button class="btn-ghost" onclick="goTo('s2_no')">No, ya la usé antes</button>
+    </div>
+  </div>
+  <div style="height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:134px;height:5px;background:rgba(255,255,255,0.3);border-radius:3px;"></div></div>
+</div>
+
+<!-- S2_SI: Acceso primera vez -->
+<div class="screen" id="s2_si">
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0.06;">
+<svg width="393" height="852" viewBox="0 0 393 852" fill="none">
+<circle cx="50" cy="160" r="38" stroke="white" stroke-width="1.5" fill="none"/>
+<polygon points="290,100 340,100 315,65" stroke="white" stroke-width="1.5" fill="none"/>
+<circle cx="200" cy="260" r="22" stroke="white" stroke-width="1" fill="none"/>
+<path d="M20 560 Q50 548 80 560 Q110 572 140 560 Q170 548 200 560" stroke="white" stroke-width="1.5" fill="none"/>
+<path d="M20 578 Q50 566 80 578 Q110 590 140 578 Q170 566 200 578" stroke="white" stroke-width="1.5" fill="none"/>
+<path d="M20 596 Q50 584 80 596 Q110 608 140 596 Q170 584 200 596" stroke="white" stroke-width="1.5" fill="none"/>
+<circle cx="330" cy="660" r="28" stroke="white" stroke-width="1" fill="none"/>
+</svg></div>
+  <div style="height:59px;display:flex;align-items:flex-end;padding:0 28px 12px;flex-shrink:0;position:relative;z-index:10;">
+  <div style="font-size:15px;font-weight:600;color:#fff;">9:41</div>
+  <div style="flex:1;"></div>
+  <div style="display:flex;align-items:center;gap:6px;">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.7 11 0.5 8 0.5C5 0.5 2.4 1.7 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" fill="white"/><path d="M8 5.6C9.6 5.6 11 6.2 12.1 7.2L13.5 5.8C12 4.5 10.1 3.7 8 3.7C5.9 3.7 4 4.5 2.5 5.8L3.9 7.2C5 6.2 6.4 5.6 8 5.6Z" fill="white"/><circle cx="8" cy="10" r="1.5" fill="white"/></svg>
+    <div style="display:flex;align-items:center;gap:2px;">
+      <div style="width:25px;height:12px;border:1.5px solid rgba(255,255,255,0.7);border-radius:3px;padding:1.5px;display:flex;align-items:center;">
+        <div style="width:16px;height:7px;background:#34c759;border-radius:1.5px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="scroll-content pad" style="display:flex;flex-direction:column;justify-content:center;gap:28px;flex:1;">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;">
+      <img src="data:image/png;base64,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" style="width:190px;" alt="UCU Logo"/>
+      <div style="font-size:17px;color:rgba(255,255,255,0.7);letter-spacing:-.2px;">Elige tu forma de acceso</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <button class="abtn" onclick="openMicrosoftLogin('s_onb1')">
+      <div class="abtn-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="white" stroke-width="1.5"/><line x1="8" y1="4" x2="8" y2="18" stroke="white" stroke-width="1.5"/><line x1="3" y1="9" x2="21" y2="9" stroke="white" stroke-width="1"/><line x1="12" y1="13" x2="18" y2="13" stroke="white" stroke-width="1"/></svg></div>
+      <span class="abtn-lbl">Usuario UCU</span>
+      <svg style="margin-left:auto;opacity:.4;" width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1L7 7L1 13" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+      <button class="abtn" onclick="showCrearAppModal()">
+      <div class="abtn-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="white" stroke-width="1.5"/><line x1="12" y1="8" x2="12" y2="16" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <span class="abtn-lbl">Crear usuario app</span>
+      <svg style="margin-left:auto;opacity:.4;" width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1L7 7L1 13" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+      <button class="abtn" onclick="goTo('s_invitado')">
+      <div class="abtn-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 7C8 9.2 9.8 11 12 11C14.2 11 16 9.2 16 7C16 4.8 14.2 3 12 3C9.8 3 8 4.8 8 7Z" stroke="white" stroke-width="1.5" fill="none"/><path d="M4 21C4 17.7 7.6 15 12 15C16.4 15 20 17.7 20 21" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+      <span class="abtn-lbl">Invitados</span>
+      <svg style="margin-left:auto;opacity:.4;" width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1L7 7L1 13" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    </div>
+    <div class="info-link">Info acceso</div>
+  </div>
+  <div class="pad" style="padding-bottom:16px;"><button class="back-btn" onclick="goTo('s1')"><svg width="10" height="17" viewBox="0 0 10 17" fill="none"><path d="M9 1L1 8.5L9 16" stroke="#00bcd4" stroke-width="2" stroke-linecap="round"/></svg> Volver</button></div>
+  <div style="height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:134px;height:5px;background:rgba(255,255,255,0.3);border-radius:3px;"></div></div>
+</div>
+
+<!-- S2_NO: Acceso segunda vez -->
+<div class="screen" id="s2_no">
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0.06;">
+<svg width="393" height="852" viewBox="0 0 393 852" fill="none">
+<circle cx="50" cy="160" r="38" stroke="white" stroke-width="1.5" fill="none"/>
+<polygon points="290,100 340,100 315,65" stroke="white" stroke-width="1.5" fill="none"/>
+<circle cx="200" cy="260" r="22" stroke="white" stroke-width="1" fill="none"/>
+<path d="M20 560 Q50 548 80 560 Q110 572 140 560 Q170 548 200 560" stroke="white" stroke-width="1.5" fill="none"/>
+<path d="M20 578 Q50 566 80 578 Q110 590 140 578 Q170 566 200 578" stroke="white" stroke-width="1.5" fill="none"/>
+<path d="M20 596 Q50 584 80 596 Q110 608 140 596 Q170 584 200 596" stroke="white" stroke-width="1.5" fill="none"/>
+<circle cx="330" cy="660" r="28" stroke="white" stroke-width="1" fill="none"/>
+</svg></div>
+  <div style="height:59px;display:flex;align-items:flex-end;padding:0 28px 12px;flex-shrink:0;position:relative;z-index:10;">
+  <div style="font-size:15px;font-weight:600;color:#fff;">9:41</div>
+  <div style="flex:1;"></div>
+  <div style="display:flex;align-items:center;gap:6px;">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.7 11 0.5 8 0.5C5 0.5 2.4 1.7 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" fill="white"/><path d="M8 5.6C9.6 5.6 11 6.2 12.1 7.2L13.5 5.8C12 4.5 10.1 3.7 8 3.7C5.9 3.7 4 4.5 2.5 5.8L3.9 7.2C5 6.2 6.4 5.6 8 5.6Z" fill="white"/><circle cx="8" cy="10" r="1.5" fill="white"/></svg>
+    <div style="display:flex;align-items:center;gap:2px;">
+      <div style="width:25px;height:12px;border:1.5px solid rgba(255,255,255,0.7);border-radius:3px;padding:1.5px;display:flex;align-items:center;">
+        <div style="width:16px;height:7px;background:#34c759;border-radius:1.5px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="scroll-content pad" style="display:flex;flex-direction:column;justify-content:center;gap:28px;flex:1;">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center;">
+      <img src="data:image/png;base64,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" style="width:190px;" alt="UCU Logo"/>
+      <div style="font-size:17px;color:rgba(255,255,255,0.7);letter-spacing:-.2px;">Elige tu forma de acceso</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <button class="abtn" onclick="openMicrosoftLogin('s_app')">
+      <div class="abtn-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="14" rx="2" stroke="white" stroke-width="1.5"/><line x1="8" y1="4" x2="8" y2="18" stroke="white" stroke-width="1.5"/><line x1="3" y1="9" x2="21" y2="9" stroke="white" stroke-width="1"/><line x1="12" y1="13" x2="18" y2="13" stroke="white" stroke-width="1"/></svg></div>
+      <span class="abtn-lbl">Usuario UCU</span>
+      <svg style="margin-left:auto;opacity:.4;" width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1L7 7L1 13" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+      <button class="abtn" onclick="goTo('s_ya_tengo')">
+      <div class="abtn-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="white" stroke-width="1.5"/><circle cx="12" cy="10" r="3" stroke="white" stroke-width="1.5" fill="none"/><path d="M6 19C6 16.2 8.7 14 12 14C15.3 14 18 16.2 18 19" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+      <span class="abtn-lbl">Usuario App</span>
+      <svg style="margin-left:auto;opacity:.4;" width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1L7 7L1 13" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+      <button class="abtn" onclick="goTo('s_invitado')">
+      <div class="abtn-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 7C8 9.2 9.8 11 12 11C14.2 11 16 9.2 16 7C16 4.8 14.2 3 12 3C9.8 3 8 4.8 8 7Z" stroke="white" stroke-width="1.5" fill="none"/><path d="M4 21C4 17.7 7.6 15 12 15C16.4 15 20 17.7 20 21" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+      <span class="abtn-lbl">Invitados</span>
+      <svg style="margin-left:auto;opacity:.4;" width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1L7 7L1 13" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    </div>
+    <div class="info-link">Info acceso</div>
+  </div>
+  <div class="pad" style="padding-bottom:16px;"><button class="back-btn" onclick="goTo('s1')"><svg width="10" height="17" viewBox="0 0 10 17" fill="none"><path d="M9 1L1 8.5L9 16" stroke="#00bcd4" stroke-width="2" stroke-linecap="round"/></svg> Volver</button></div>
+  <div style="height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:134px;height:5px;background:rgba(255,255,255,0.3);border-radius:3px;"></div></div>
+</div>
+
+<!-- S_CREAR_FORM: Formulario crear cuenta app (post popup) -->
+<div class="screen" id="s_crear_form">
+  
+    <div style="height:59px;display:flex;align-items:flex-end;padding:0 28px 12px;flex-shrink:0;position:relative;z-index:10;">
+  <div style="font-size:15px;font-weight:600;color:#fff;">9:41</div>
+  <div style="flex:1;"></div>
+  <div style="display:flex;align-items:center;gap:6px;">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.7 11 0.5 8 0.5C5 0.5 2.4 1.7 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" fill="white"/><path d="M8 5.6C9.6 5.6 11 6.2 12.1 7.2L13.5 5.8C12 4.5 10.1 3.7 8 3.7C5.9 3.7 4 4.5 2.5 5.8L3.9 7.2C5 6.2 6.4 5.6 8 5.6Z" fill="white"/><circle cx="8" cy="10" r="1.5" fill="white"/></svg>
+    <div style="display:flex;align-items:center;gap:2px;">
+      <div style="width:25px;height:12px;border:1.5px solid rgba(255,255,255,0.7);border-radius:3px;padding:1.5px;display:flex;align-items:center;">
+        <div style="width:16px;height:7px;background:#34c759;border-radius:1.5px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="scroll-content pad" style="padding-top:16px;display:flex;flex-direction:column;gap:20px;">
+      <div style="padding-bottom:8px;"><button class="back-btn" onclick="goTo('s2_si')"><svg width="10" height="17" viewBox="0 0 10 17" fill="none"><path d="M9 1L1 8.5L9 16" stroke="#00bcd4" stroke-width="2" stroke-linecap="round"/></svg> Volver</button></div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <span class="tag">Crear cuenta app</span>
+        <div class="section-title">Crear cuenta</div>
+        <div class="section-sub">Ingresá tu correo UCU y creá una contraseña para la app.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="field"><label>Correo UCU</label><input id="em2_s_onb1" type="email" placeholder="tucorreo@ucu.edu.uy" autocomplete="off"/></div>
+        <div class="field"><label>Crear contraseña</label><input id="pw2_s_onb1" type="password" placeholder="••••••••" autocomplete="off"/></div>
+        <div class="field"><label>Confirmar contraseña</label><input id="pw3_s_onb1" type="password" placeholder="••••••••" autocomplete="off"/></div>
+        <label class="chkrow"><input type="checkbox" checked/><span>Recordar contraseña</span></label>
+      </div>
+    </div>
+    <div class="pad" style="padding-bottom:16px;display:flex;flex-direction:column;gap:10px;">
+      <button class="btn-p" onclick="goTo('s_onb1')">Crear cuenta</button>
+    </div>
+    <div style="height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:134px;height:5px;background:rgba(255,255,255,0.3);border-radius:3px;"></div></div>
+</div>
+
+<!-- S_YA_TENGO: ¿Ya tenés cuenta app? -->
+<div class="screen" id="s_ya_tengo">
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0.06;">
+<svg width="393" height="852" viewBox="0 0 393 852" fill="none">
+<circle cx="50" cy="160" r="38" stroke="white" stroke-width="1.5" fill="none"/>
+<polygon points="290,100 340,100 315,65" stroke="white" stroke-width="1.5" fill="none"/>
+<circle cx="200" cy="260" r="22" stroke="white" stroke-width="1" fill="none"/>
+<path d="M20 560 Q50 548 80 560 Q110 572 140 560 Q170 548 200 560" stroke="white" stroke-width="1.5" fill="none"/>
+<path d="M20 578 Q50 566 80 578 Q110 590 140 578 Q170 566 200 578" stroke="white" stroke-width="1.5" fill="none"/>
+<path d="M20 596 Q50 584 80 596 Q110 608 140 596 Q170 584 200 596" stroke="white" stroke-width="1.5" fill="none"/>
+<circle cx="330" cy="660" r="28" stroke="white" stroke-width="1" fill="none"/>
+</svg></div>
+  <div style="height:59px;display:flex;align-items:flex-end;padding:0 28px 12px;flex-shrink:0;position:relative;z-index:10;">
+  <div style="font-size:15px;font-weight:600;color:#fff;">9:41</div>
+  <div style="flex:1;"></div>
+  <div style="display:flex;align-items:center;gap:6px;">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.7 11 0.5 8 0.5C5 0.5 2.4 1.7 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" fill="white"/><path d="M8 5.6C9.6 5.6 11 6.2 12.1 7.2L13.5 5.8C12 4.5 10.1 3.7 8 3.7C5.9 3.7 4 4.5 2.5 5.8L3.9 7.2C5 6.2 6.4 5.6 8 5.6Z" fill="white"/><circle cx="8" cy="10" r="1.5" fill="white"/></svg>
+    <div style="display:flex;align-items:center;gap:2px;">
+      <div style="width:25px;height:12px;border:1.5px solid rgba(255,255,255,0.7);border-radius:3px;padding:1.5px;display:flex;align-items:center;">
+        <div style="width:16px;height:7px;background:#34c759;border-radius:1.5px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="scroll-content pad" style="display:flex;flex-direction:column;justify-content:center;gap:28px;flex:1;">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;">
+      <img src="data:image/png;base64,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" style="width:190px;" alt="UCU Logo"/>
+      <div class="section-title" style="font-size:22px;">Usuario App</div>
+      <div class="section-sub">¿Ya tenés una cuenta creada en la app?</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <button class="abtn" onclick="goTo('s_login_app')">
+      <div class="abtn-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="white" stroke-width="1.5"/><circle cx="12" cy="10" r="3" stroke="white" stroke-width="1.5" fill="none"/><path d="M6 19C6 16.2 8.7 14 12 14C15.3 14 18 16.2 18 19" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+      <span class="abtn-lbl">Ya tengo usuario app</span>
+      <svg style="margin-left:auto;opacity:.4;" width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1L7 7L1 13" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+      <button class="abtn" onclick="showCrearAppModal2()">
+      <div class="abtn-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="white" stroke-width="1.5"/><line x1="12" y1="8" x2="12" y2="16" stroke="white" stroke-width="1.5" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <span class="abtn-lbl">Crear usuario app</span>
+      <svg style="margin-left:auto;opacity:.4;" width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M1 1L7 7L1 13" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    </div>
+  </div>
+  <div class="pad" style="padding-bottom:16px;"><button class="back-btn" onclick="goTo('s2_no')"><svg width="10" height="17" viewBox="0 0 10 17" fill="none"><path d="M9 1L1 8.5L9 16" stroke="#00bcd4" stroke-width="2" stroke-linecap="round"/></svg> Volver</button></div>
+  <div style="height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:134px;height:5px;background:rgba(255,255,255,0.3);border-radius:3px;"></div></div>
+</div>
+
+<!-- S_LOGIN_APP: Login usuario app -->
+<div class="screen" id="s_login_app">
+  
+    <div style="height:59px;display:flex;align-items:flex-end;padding:0 28px 12px;flex-shrink:0;position:relative;z-index:10;">
+  <div style="font-size:15px;font-weight:600;color:#fff;">9:41</div>
+  <div style="flex:1;"></div>
+  <div style="display:flex;align-items:center;gap:6px;">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.7 11 0.5 8 0.5C5 0.5 2.4 1.7 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" fill="white"/><path d="M8 5.6C9.6 5.6 11 6.2 12.1 7.2L13.5 5.8C12 4.5 10.1 3.7 8 3.7C5.9 3.7 4 4.5 2.5 5.8L3.9 7.2C5 6.2 6.4 5.6 8 5.6Z" fill="white"/><circle cx="8" cy="10" r="1.5" fill="white"/></svg>
+    <div style="display:flex;align-items:center;gap:2px;">
+      <div style="width:25px;height:12px;border:1.5px solid rgba(255,255,255,0.7);border-radius:3px;padding:1.5px;display:flex;align-items:center;">
+        <div style="width:16px;height:7px;background:#34c759;border-radius:1.5px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="scroll-content pad" style="padding-top:16px;display:flex;flex-direction:column;gap:20px;">
+      <div style="padding-bottom:8px;"><button class="back-btn" onclick="goTo('s_ya_tengo')"><svg width="10" height="17" viewBox="0 0 10 17" fill="none"><path d="M9 1L1 8.5L9 16" stroke="#00bcd4" stroke-width="2" stroke-linecap="round"/></svg> Volver</button></div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <span class="tag">Usuario App</span>
+        <div class="section-title">Iniciar sesión</div>
+        <div class="section-sub">Ingresá tu correo y contraseña de la app UCU.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="field"><label>Correo electrónico</label><input id="em_s_app" type="email" placeholder="tucorreo@ucu.edu.uy" autocomplete="off"/></div>
+        <div class="field"><label>Contraseña</label><input id="pw_s_app" type="password" placeholder="••••••••" autocomplete="off"/></div>
+        <label class="chkrow"><input type="checkbox" checked/><span>Recordar contraseña</span></label>
+      </div>
+      <div style="background:rgba(0,188,212,0.08);border-radius:12px;padding:14px 16px;border-left:3px solid #00bcd4;">
+        <div style="color:#00bcd4;font-size:12px;font-weight:600;margin-bottom:3px;">¿Problemas para acceder?</div>
+        <div style="color:rgba(255,255,255,0.5);font-size:13px;">Contactá soporte desde Servicios → Soporte.</div>
+      </div>
+    </div>
+    <div class="pad" style="padding-bottom:16px;display:flex;flex-direction:column;gap:10px;">
+      <button class="btn-p" onclick="goTo('s_app')">Ingresar</button>
+    </div>
+    <div style="height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:134px;height:5px;background:rgba(255,255,255,0.3);border-radius:3px;"></div></div>
+</div>
+
+<!-- S_CREAR_APP2: Crear cuenta desde flujo NO -->
+<div class="screen" id="s_crear_app2">
+  
+    <div style="height:59px;display:flex;align-items:flex-end;padding:0 28px 12px;flex-shrink:0;position:relative;z-index:10;">
+  <div style="font-size:15px;font-weight:600;color:#fff;">9:41</div>
+  <div style="flex:1;"></div>
+  <div style="display:flex;align-items:center;gap:6px;">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.7 11 0.5 8 0.5C5 0.5 2.4 1.7 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" fill="white"/><path d="M8 5.6C9.6 5.6 11 6.2 12.1 7.2L13.5 5.8C12 4.5 10.1 3.7 8 3.7C5.9 3.7 4 4.5 2.5 5.8L3.9 7.2C5 6.2 6.4 5.6 8 5.6Z" fill="white"/><circle cx="8" cy="10" r="1.5" fill="white"/></svg>
+    <div style="display:flex;align-items:center;gap:2px;">
+      <div style="width:25px;height:12px;border:1.5px solid rgba(255,255,255,0.7);border-radius:3px;padding:1.5px;display:flex;align-items:center;">
+        <div style="width:16px;height:7px;background:#34c759;border-radius:1.5px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="scroll-content pad" style="padding-top:16px;display:flex;flex-direction:column;gap:20px;">
+      <div style="padding-bottom:8px;"><button class="back-btn" onclick="goTo('s_ya_tengo')"><svg width="10" height="17" viewBox="0 0 10 17" fill="none"><path d="M9 1L1 8.5L9 16" stroke="#00bcd4" stroke-width="2" stroke-linecap="round"/></svg> Volver</button></div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <span class="tag">Crear cuenta app</span>
+        <div class="section-title">Crear cuenta</div>
+        <div class="section-sub">Ingresá tu correo UCU y creá una contraseña para la app.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="field"><label>Correo UCU</label><input id="em2_s_app" type="email" placeholder="tucorreo@ucu.edu.uy" autocomplete="off"/></div>
+        <div class="field"><label>Crear contraseña</label><input id="pw2_s_app" type="password" placeholder="••••••••" autocomplete="off"/></div>
+        <div class="field"><label>Confirmar contraseña</label><input id="pw3_s_app" type="password" placeholder="••••••••" autocomplete="off"/></div>
+        <label class="chkrow"><input type="checkbox" checked/><span>Recordar contraseña</span></label>
+      </div>
+    </div>
+    <div class="pad" style="padding-bottom:16px;display:flex;flex-direction:column;gap:10px;">
+      <button class="btn-p" onclick="goTo('s_app')">Crear cuenta</button>
+    </div>
+    <div style="height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:134px;height:5px;background:rgba(255,255,255,0.3);border-radius:3px;"></div></div>
+</div>
+
+<!-- S_INVITADO: Acceso como invitado -->
+<div class="screen" id="s_invitado">
+  <div style="height:59px;display:flex;align-items:flex-end;padding:0 28px 12px;flex-shrink:0;position:relative;z-index:10;">
+  <div style="font-size:15px;font-weight:600;color:#fff;">9:41</div>
+  <div style="flex:1;"></div>
+  <div style="display:flex;align-items:center;gap:6px;">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.7 11 0.5 8 0.5C5 0.5 2.4 1.7 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" fill="white"/><path d="M8 5.6C9.6 5.6 11 6.2 12.1 7.2L13.5 5.8C12 4.5 10.1 3.7 8 3.7C5.9 3.7 4 4.5 2.5 5.8L3.9 7.2C5 6.2 6.4 5.6 8 5.6Z" fill="white"/><circle cx="8" cy="10" r="1.5" fill="white"/></svg>
+    <div style="display:flex;align-items:center;gap:2px;">
+      <div style="width:25px;height:12px;border:1.5px solid rgba(255,255,255,0.7);border-radius:3px;padding:1.5px;display:flex;align-items:center;">
+        <div style="width:16px;height:7px;background:#34c759;border-radius:1.5px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;">
+    <div style="width:80px;height:80px;border-radius:50%;background:rgba(0,188,212,0.1);display:flex;align-items:center;justify-content:center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 7C8 9.2 9.8 11 12 11C14.2 11 16 9.2 16 7C16 4.8 14.2 3 12 3C9.8 3 8 4.8 8 7Z" stroke="white" stroke-width="1.5" fill="none"/><path d="M4 21C4 17.7 7.6 15 12 15C16.4 15 20 17.7 20 21" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+    </div>
+    <div class="section-title" style="text-align:center;">Acceso como invitado</div>
+    <div class="section-sub" style="text-align:center;">Podés explorar la app con acceso limitado. Algunas funciones requieren iniciar sesión.</div>
+  </div>
+  <div class="pad" style="padding-bottom:16px;display:flex;flex-direction:column;gap:10px;">
+    <button class="btn-p" onclick="goTo('s_app')">Explorar la app</button>
+    <div class="skip" onclick="goTo('s2_si')">← Volver al inicio</div>
+  </div>
+  <div style="height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:134px;height:5px;background:rgba(255,255,255,0.3);border-radius:3px;"></div></div>
+</div>
+
+<!-- ONB 1/4 -->
+<div class="screen" id="s_onb1">
+  <div style="height:59px;display:flex;align-items:flex-end;padding:0 28px 12px;flex-shrink:0;position:relative;z-index:10;">
+  <div style="font-size:15px;font-weight:600;color:#fff;">9:41</div>
+  <div style="flex:1;"></div>
+  <div style="display:flex;align-items:center;gap:6px;">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.7 11 0.5 8 0.5C5 0.5 2.4 1.7 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" fill="white"/><path d="M8 5.6C9.6 5.6 11 6.2 12.1 7.2L13.5 5.8C12 4.5 10.1 3.7 8 3.7C5.9 3.7 4 4.5 2.5 5.8L3.9 7.2C5 6.2 6.4 5.6 8 5.6Z" fill="white"/><circle cx="8" cy="10" r="1.5" fill="white"/></svg>
+    <div style="display:flex;align-items:center;gap:2px;">
+      <div style="width:25px;height:12px;border:1.5px solid rgba(255,255,255,0.7);border-radius:3px;padding:1.5px;display:flex;align-items:center;">
+        <div style="width:16px;height:7px;background:#34c759;border-radius:1.5px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="scroll-content pad" style="padding-top:16px;display:flex;flex-direction:column;gap:20px;">
+    <div class="step-lbl">1 de 4</div>
+    <div class="section-title">Tus cursos al instante</div>
+    <div class="section-sub">Consultá materias, horarios y fechas de examen sin perder tiempo.</div>
+    <div style="background:rgba(255,255,255,0.05);border-radius:16px;padding:16px;border-left:3px solid #00bcd4;">
+      <div style="color:#00bcd4;font-size:12px;font-weight:600;margin-bottom:10px;letter-spacing:.5px;">⏰  MI HORARIO — MARTES 14</div>
+      <div style="background:rgba(255,255,255,0.05);border-radius:12px;padding:14px;">
+        <div style="color:#00bcd4;font-size:13px;font-weight:500;">08:00 – 10:50</div>
+        <div style="color:#fff;font-size:15px;font-weight:600;margin-top:4px;letter-spacing:-.2px;">Análisis de Plataformas Digitales</div>
+        <div style="color:rgba(255,255,255,0.4);font-size:13px;margin-top:3px;">Salón 012</div>
+      </div>
+    </div>
+    <div style="background:rgba(255,255,255,0.05);border-radius:16px;padding:16px;border-left:3px solid #7c5cbf;">
+      <div style="color:#7c5cbf;font-size:12px;font-weight:600;margin-bottom:10px;letter-spacing:.5px;">⭐  MIS CALIFICACIONES</div>
+      <div style="display:flex;gap:10px;">
+        <div style="background:rgba(255,255,255,0.05);border-radius:12px;padding:12px;flex:1;"><div style="color:#fff;font-size:22px;font-weight:700;">3</div><div style="color:rgba(255,255,255,0.4);font-size:11px;margin-top:4px;">Programación II</div></div>
+        <div style="background:rgba(255,255,255,0.05);border-radius:12px;padding:12px;flex:1;"><div style="color:#fff;font-size:22px;font-weight:700;">3</div><div style="color:rgba(255,255,255,0.4);font-size:11px;margin-top:4px;">Sistemas Op.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="pad" style="padding-bottom:16px;display:flex;flex-direction:column;gap:10px;">
+    <button class="btn-p" onclick="goTo('s_onb2')">Siguiente</button>
+  </div>
+  <div style="height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:134px;height:5px;background:rgba(255,255,255,0.3);border-radius:3px;"></div></div>
+</div>
+
+<!-- ONB 2/4 -->
+<div class="screen" id="s_onb2">
+  <div style="height:59px;display:flex;align-items:flex-end;padding:0 28px 12px;flex-shrink:0;position:relative;z-index:10;">
+  <div style="font-size:15px;font-weight:600;color:#fff;">9:41</div>
+  <div style="flex:1;"></div>
+  <div style="display:flex;align-items:center;gap:6px;">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.7 11 0.5 8 0.5C5 0.5 2.4 1.7 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" fill="white"/><path d="M8 5.6C9.6 5.6 11 6.2 12.1 7.2L13.5 5.8C12 4.5 10.1 3.7 8 3.7C5.9 3.7 4 4.5 2.5 5.8L3.9 7.2C5 6.2 6.4 5.6 8 5.6Z" fill="white"/><circle cx="8" cy="10" r="1.5" fill="white"/></svg>
+    <div style="display:flex;align-items:center;gap:2px;">
+      <div style="width:25px;height:12px;border:1.5px solid rgba(255,255,255,0.7);border-radius:3px;padding:1.5px;display:flex;align-items:center;">
+        <div style="width:16px;height:7px;background:#34c759;border-radius:1.5px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="scroll-content pad" style="padding-top:16px;display:flex;flex-direction:column;gap:20px;">
+    <div class="step-lbl">2 de 4</div>
+    <div class="section-title">Todo lo que necesitás</div>
+    <div class="section-sub">Accedé a servicios universitarios desde la sección Servicios.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:rgba(255,255,255,0.05);border-radius:14px;padding:14px;"><div style="font-size:22px;margin-bottom:6px;">📋</div><div style="color:#fff;font-size:13px;font-weight:500;">Inscripción a cursos</div></div>
+      <div style="background:rgba(255,255,255,0.05);border-radius:14px;padding:14px;"><div style="font-size:22px;margin-bottom:6px;">🗺️</div><div style="color:#fff;font-size:13px;font-weight:500;">Mapa del campus</div></div>
+      <div style="background:rgba(255,255,255,0.05);border-radius:14px;padding:14px;"><div style="font-size:22px;margin-bottom:6px;">💼</div><div style="color:#fff;font-size:13px;font-weight:500;">Portal Laboral</div></div>
+      <div style="background:rgba(255,255,255,0.05);border-radius:14px;padding:14px;"><div style="font-size:22px;margin-bottom:6px;">🎓</div><div style="color:#fff;font-size:13px;font-weight:500;">Evaluación docente</div></div>
+      <div style="background:rgba(255,255,255,0.05);border-radius:14px;padding:14px;"><div style="font-size:22px;margin-bottom:6px;">❤️</div><div style="color:#fff;font-size:13px;font-weight:500;">Comunidad sana</div></div>
+      <div style="background:rgba(255,255,255,0.05);border-radius:14px;padding:14px;"><div style="font-size:22px;margin-bottom:6px;">🎁</div><div style="color:#fff;font-size:13px;font-weight:500;">Beneficios</div></div>
+    </div>
+  </div>
+  <div class="pad" style="padding-bottom:16px;display:flex;flex-direction:column;gap:10px;">
+    <button class="btn-p" onclick="goTo('s_onb3')">Siguiente</button>
+    <div class="skip" onclick="goTo('s_onb1')">← Volver</div>
+  </div>
+  <div style="height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:134px;height:5px;background:rgba(255,255,255,0.3);border-radius:3px;"></div></div>
+</div>
+
+<!-- ONB 3/4 -->
+<div class="screen" id="s_onb3">
+  <div style="height:59px;display:flex;align-items:flex-end;padding:0 28px 12px;flex-shrink:0;position:relative;z-index:10;">
+  <div style="font-size:15px;font-weight:600;color:#fff;">9:41</div>
+  <div style="flex:1;"></div>
+  <div style="display:flex;align-items:center;gap:6px;">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.7 11 0.5 8 0.5C5 0.5 2.4 1.7 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" fill="white"/><path d="M8 5.6C9.6 5.6 11 6.2 12.1 7.2L13.5 5.8C12 4.5 10.1 3.7 8 3.7C5.9 3.7 4 4.5 2.5 5.8L3.9 7.2C5 6.2 6.4 5.6 8 5.6Z" fill="white"/><circle cx="8" cy="10" r="1.5" fill="white"/></svg>
+    <div style="display:flex;align-items:center;gap:2px;">
+      <div style="width:25px;height:12px;border:1.5px solid rgba(255,255,255,0.7);border-radius:3px;padding:1.5px;display:flex;align-items:center;">
+        <div style="width:16px;height:7px;background:#34c759;border-radius:1.5px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="scroll-content pad" style="padding-top:16px;display:flex;flex-direction:column;gap:20px;">
+    <div class="step-lbl">3 de 4</div>
+    <div class="section-title">No te pierdas nada</div>
+    <div class="section-sub">Activá notificaciones para exámenes, inscripciones y novedades UCU.</div>
+    <div style="align-self:center;width:72px;height:72px;border-radius:50%;background:rgba(0,188,212,0.1);display:flex;align-items:center;justify-content:center;">
+      <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><path d="M20 6C13 6 8 11 8 18V28H32V18C32 11 27 6 20 6Z" stroke="#00bcd4" stroke-width="2" fill="none"/><rect x="16" y="28" width="8" height="4" rx="2" fill="#00bcd4"/><line x1="20" y1="2" x2="20" y2="6" stroke="#00bcd4" stroke-width="2" stroke-linecap="round"/></svg>
+    </div>
+    <div style="background:rgba(255,255,255,0.05);border-radius:16px;overflow:hidden;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:.5px solid rgba(255,255,255,0.08);">
+        <div><div style="color:#fff;font-size:15px;letter-spacing:-.2px;">Fechas de examen</div><div style="color:rgba(255,255,255,0.4);font-size:12px;margin-top:2px;">Recordatorios 24h antes</div></div>
+        <div class="tgl on" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:.5px solid rgba(255,255,255,0.08);">
+        <div><div style="color:#fff;font-size:15px;letter-spacing:-.2px;">Inscripciones abiertas</div><div style="color:rgba(255,255,255,0.4);font-size:12px;margin-top:2px;">Alertas de nuevas cursadas</div></div>
+        <div class="tgl on" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:16px;">
+        <div><div style="color:#fff;font-size:15px;letter-spacing:-.2px;">Noticias UCU</div><div style="color:rgba(255,255,255,0.4);font-size:12px;margin-top:2px;">Novedades institucionales</div></div>
+        <div class="tgl" onclick="this.classList.toggle('on')"></div>
+      </div>
+    </div>
+  </div>
+  <div class="pad" style="padding-bottom:16px;display:flex;flex-direction:column;gap:10px;">
+    <button class="btn-p" onclick="goTo('s_onb4')">Siguiente</button>
+    <div class="skip" onclick="goTo('s_onb2')">← Volver</div>
+  </div>
+  <div style="height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:134px;height:5px;background:rgba(255,255,255,0.3);border-radius:3px;"></div></div>
+</div>
+
+<!-- ONB 4/4 — Personalizá -->
+<div class="screen" id="s_onb4">
+  <div style="height:59px;display:flex;align-items:flex-end;padding:0 28px 12px;flex-shrink:0;position:relative;z-index:10;">
+  <div style="font-size:15px;font-weight:600;color:#fff;">9:41</div>
+  <div style="flex:1;"></div>
+  <div style="display:flex;align-items:center;gap:6px;">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.7 11 0.5 8 0.5C5 0.5 2.4 1.7 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" fill="white"/><path d="M8 5.6C9.6 5.6 11 6.2 12.1 7.2L13.5 5.8C12 4.5 10.1 3.7 8 3.7C5.9 3.7 4 4.5 2.5 5.8L3.9 7.2C5 6.2 6.4 5.6 8 5.6Z" fill="white"/><circle cx="8" cy="10" r="1.5" fill="white"/></svg>
+    <div style="display:flex;align-items:center;gap:2px;">
+      <div style="width:25px;height:12px;border:1.5px solid rgba(255,255,255,0.7);border-radius:3px;padding:1.5px;display:flex;align-items:center;">
+        <div style="width:16px;height:7px;background:#34c759;border-radius:1.5px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="scroll-content pad" style="padding-top:16px;display:flex;flex-direction:column;gap:16px;">
+    <div class="step-lbl">4 de 4</div>
+    <div class="section-title" style="font-size:24px;">Personalizá tu inicio</div>
+    <div class="section-sub">Elegí qué widgets querés ver. Podés cambiarlo cuando quieras.</div>
+    <div class="wi sel" data-id="horario" onclick="toggleW(this)"><div class="wl"><div class="wico"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#00bcd4" stroke-width="1.5"/><polyline points="9,5 9,9 12,11" stroke="#00bcd4" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="wlbl">Mi horario</div><div class="wsub">Clases del día</div></div></div><div class="tgl on" id="wt-horario"></div></div><div class="wi sel" data-id="calificaciones" onclick="toggleW(this)"><div class="wl"><div class="wico"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><polygon points="9,2 11,7 17,7 12,11 14,17 9,13 4,17 6,11 1,7 7,7" stroke="#00bcd4" stroke-width="1.5" fill="none"/></svg></div><div><div class="wlbl">Mis calificaciones</div><div class="wsub">Notas por curso</div></div></div><div class="tgl on" id="wt-calificaciones"></div></div><div class="wi sel" data-id="inscripcion" onclick="toggleW(this)"><div class="wl"><div class="wico"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="12" rx="2" stroke="#00bcd4" stroke-width="1.5"/><line x1="2" y1="7" x2="16" y2="7" stroke="#00bcd4" stroke-width="1"/><line x1="6" y1="3" x2="6" y2="7" stroke="#00bcd4" stroke-width="1.5"/><line x1="12" y1="3" x2="12" y2="7" stroke="#00bcd4" stroke-width="1.5"/></svg></div><div><div class="wlbl">Inscripción a cursos</div><div class="wsub">Citas y plazos</div></div></div><div class="tgl on" id="wt-inscripcion"></div></div><div class="wi " data-id="actividades" onclick="toggleW(this)"><div class="wl"><div class="wico"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="4" width="7" height="5" rx="1" stroke="#00bcd4" stroke-width="1.5"/><rect x="10" y="4" width="7" height="5" rx="1" stroke="#00bcd4" stroke-width="1.5"/><rect x="1" y="11" width="7" height="5" rx="1" stroke="#00bcd4" stroke-width="1.5"/><rect x="10" y="11" width="7" height="5" rx="1" stroke="#00bcd4" stroke-width="1.5"/></svg></div><div><div class="wlbl">Actividades UCU</div><div class="wsub">Eventos del campus</div></div></div><div class="tgl " id="wt-actividades"></div></div><div class="wi " data-id="noticias" onclick="toggleW(this)"><div class="wl"><div class="wico"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="12" rx="2" stroke="#00bcd4" stroke-width="1.5"/><line x1="5" y1="7" x2="13" y2="7" stroke="#00bcd4" stroke-width="1"/><line x1="5" y1="10" x2="10" y2="10" stroke="#00bcd4" stroke-width="1"/></svg></div><div><div class="wlbl">Noticias UCU</div><div class="wsub">Novedades institucionales</div></div></div><div class="tgl " id="wt-noticias"></div></div><div class="wi " data-id="favoritos" onclick="toggleW(this)"><div class="wl"><div class="wico"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3C6 5 3 8 3 11C3 13.8 5.7 16 9 16C12.3 16 15 13.8 15 11C15 8 12 5 9 3Z" stroke="#00bcd4" stroke-width="1.5" fill="none"/></svg></div><div><div class="wlbl">Mis favoritos</div><div class="wsub">Accesos rápidos</div></div></div><div class="tgl " id="wt-favoritos"></div></div>
+  </div>
+  <div class="pad" style="padding-bottom:16px;display:flex;flex-direction:column;gap:10px;">
+    <button class="btn-p" onclick="goTo('s_listo')">¡Entrar a la app!</button>
+    <div class="skip" onclick="goTo('s_onb3')">← Volver</div>
+  </div>
+  <div style="height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:134px;height:5px;background:rgba(255,255,255,0.3);border-radius:3px;"></div></div>
+</div>
+
+<!-- S_LISTO: Todo listo -->
+<div class="screen" id="s_listo">
+  <div style="height:59px;display:flex;align-items:flex-end;padding:0 28px 12px;flex-shrink:0;position:relative;z-index:10;">
+  <div style="font-size:15px;font-weight:600;color:#fff;">9:41</div>
+  <div style="flex:1;"></div>
+  <div style="display:flex;align-items:center;gap:6px;">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.7 11 0.5 8 0.5C5 0.5 2.4 1.7 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" fill="white"/><path d="M8 5.6C9.6 5.6 11 6.2 12.1 7.2L13.5 5.8C12 4.5 10.1 3.7 8 3.7C5.9 3.7 4 4.5 2.5 5.8L3.9 7.2C5 6.2 6.4 5.6 8 5.6Z" fill="white"/><circle cx="8" cy="10" r="1.5" fill="white"/></svg>
+    <div style="display:flex;align-items:center;gap:2px;">
+      <div style="width:25px;height:12px;border:1.5px solid rgba(255,255,255,0.7);border-radius:3px;padding:1.5px;display:flex;align-items:center;">
+        <div style="width:16px;height:7px;background:#34c759;border-radius:1.5px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;">
+    <div style="width:80px;height:80px;border-radius:50%;background:rgba(0,188,212,0.1);display:flex;align-items:center;justify-content:center;">
+      <svg width="40" height="40" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" stroke="#00bcd4" stroke-width="2"/><polyline points="10,18 16,24 26,13" stroke="#00bcd4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="section-title" style="text-align:center;">¡Todo listo!</div>
+    <div class="section-sub" style="text-align:center;">Tu app UCU está configurada. Podés cambiar todo desde ajustes.</div>
+    <div style="background:rgba(255,255,255,0.05);border-radius:16px;padding:16px;width:100%;">
+      <div style="color:#00bcd4;font-size:12px;font-weight:600;margin-bottom:10px;letter-spacing:.5px;">TU INICIO TENDRÁ</div>
+      <div id="summary" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+  </div>
+  <div class="pad" style="padding-bottom:16px;">
+    <button class="btn-p" style="font-size:17px;" onclick="goTo('s_app')">Ir al inicio</button>
+  </div>
+  <div style="height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:134px;height:5px;background:rgba(255,255,255,0.3);border-radius:3px;"></div></div>
+</div>
+
+<!-- S_APP: Pantalla final (app) -->
+<div class="screen" id="s_app">
+  <div style="height:59px;display:flex;align-items:flex-end;padding:0 28px 12px;flex-shrink:0;position:relative;z-index:10;">
+  <div style="font-size:15px;font-weight:600;color:#fff;">9:41</div>
+  <div style="flex:1;"></div>
+  <div style="display:flex;align-items:center;gap:6px;">
+    <svg width="17" height="12" viewBox="0 0 17 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+    <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.4C10.4 2.4 12.6 3.4 14.1 5L15.5 3.6C13.6 1.7 11 0.5 8 0.5C5 0.5 2.4 1.7 0.5 3.6L1.9 5C3.4 3.4 5.6 2.4 8 2.4Z" fill="white"/><path d="M8 5.6C9.6 5.6 11 6.2 12.1 7.2L13.5 5.8C12 4.5 10.1 3.7 8 3.7C5.9 3.7 4 4.5 2.5 5.8L3.9 7.2C5 6.2 6.4 5.6 8 5.6Z" fill="white"/><circle cx="8" cy="10" r="1.5" fill="white"/></svg>
+    <div style="display:flex;align-items:center;gap:2px;">
+      <div style="width:25px;height:12px;border:1.5px solid rgba(255,255,255,0.7);border-radius:3px;padding:1.5px;display:flex;align-items:center;">
+        <div style="width:16px;height:7px;background:#34c759;border-radius:1.5px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAALcklEQVR4nO3dy3bjuA4FULrX/f9f9h10vOJO7NiS+QKw96gmlYgghUPKj7QGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB+5rL6A7K7X63XUz75cLuYPgNaaQB9iZIg/I9wBahMCnawI8b8IeIBaNP2TdgvwZwQ7QA2a/UFRgvwR4Q6Qlwb/pshB/pNgB8hHY38hU5D/JNgB8vhn9QXsLHOYt5Z/fACVOKE9UDHonNYBYnNC/6FimLdWd9wAWTiVfRFo35zWAeLRuNucMO8ZktGuF4DxyjftUeE4MxB9XzwAZZv1iBDcIfyyjguAv5Vs1L1Db8fAqzBGAL6Va9I9gy5CyFUbL0BVpRp0r3CLGGyVxw5QQZnm3CPQMoSZOgDkVOKLZYTYtx7j8Jl9gP2kCKm/fBo+WYL8EbUhO2ucStIv1k9u6Ao3c9X6XK/X6+VyuWRu+NWeTM18chShLhXmv8IYj0gzkEeqhtVRVeqU4UuE3lHpuwh2ePlnt9pUmP8KYzwj7WvoVUKqh0/Gu0NDpZbrndXX0tr39ay+DkgZ6ML8OKHO7nYPzt02GtSTMtDPqhrmN9XHz76ihaRgZ4V0gX72JhJm/zpbB82LEaIHY+RrJ57/rb6AniKG+V/XvOq6zr77+/bO8RHXRC2ZgvA2FvcGo6U7oR/lJntMXVglU5jfyzou9pEm0N0s/Z0JdfPAJ7Kvn+zjY600gX6GU+hrasQsVcKuyjiZL0Wgn7lBBNU4GhZHVVsz1cbLHCkC/Shhfox6MVLVcKs6bsYJH+huij2ZF95RfZ1UHz99hQ/0o5w2z1E3ehNm0Ffoz6FHaAifXOOr/7t7yPpcOs9EuHdncZ/QS6kTupvmM+oHY9jg0EOpQOdzQp1PCS8YI+wj96NNQRCt4XEiuziyDldsOtwrfCpsoAPxzA7KswF5//88USCKEo/c7Xr7Uk92d/my2896xeaBT4Q8oUda9K8awY5/ba03jxJpbc59O3Kd3X52pP5DLSVO6EB+szaNNqfsKn2gu/nGUFd2Mns9jvx9ngBwVvpAZw+aVG0j53/V5tKmlt0IdCAsoQrfwgX6kZ2+m30s9aU69wA7CRfoAK0JU/hJoANDZX//hI0FuxDoi903g9u/Z36RBbCf7Jsgxgj1xTJZF/mjUAeec5/Ab07oTJN1Qwawg7SBbgc/hzqD+4A9pA10AKhEoANAAqHeFAewq8vlcjnzlwXv/4+/TMgnnNABOjkTxj7lQi8CHQASEOgAkIBAB4AEBDoAJCDQASABgQ4ACQj0jfiucwDO8sUyG7gP8tu/fR4VgCOc0Bd7dip3WgfgCCf0Rd4JbKd1AN4l0Cc7c/IW7AC8ItAn6fEIXbAD8IzX0Cfo/Xq419cB+MkJfaCRweu0DsA9gT7AzBO0YAegNYHe1cpH4YIdoDavoXeyy+va1y+rrwOAuQT6h3YN0B2vCYBxPHI/KUJgegwPUIdAPyhCkP8k2AHy88j9gIhhfi/69QPwnBP6GzIFodM6QE4C/Q+ZgvwnwQ6Qi0B/IHOQ/yTYAXLwGvoPlcL8XtVxA2ThhP5FoDmtA0RWPtAF+W+CHSCesoEuyF8T7PC+3j3FfcdRXkPnJZsfgP2VPaHb/ZKRzRcjXK/Xq565v7QndI1tDnUG9wF7SBvo8JMTBpBZqEDXkGPLOn/ZT2c7zlv2mvOcuX8uVKADVLDjJor9CXRIwsmFkayv/Ql06ECzm2+Xmu9yHTeZT/ejap2lZgIdgLfstnnhv0LuSo4sqmc7LwvzfT1quNMOeOTcrxrn7ieXjDVvbd+6j+5vK2qedQ315IQOHa3YKFbfnK4af/W6z6TW7ykb6Fl2ZKOp03Ezm49G96/Zddi97qPv293Hf0SmHpc+0DMtvJ2o699m1CfSY9UZTXPWmoxU95FmrXG95n0hA73Xgo9y46yStT6zxjWyEWlyj40OAHX/r+iBm63HhQx0Ysl20xzRu+FFbqAz10HvGkWse9R6X+/0+plVhG20Ryf7r8Vt4fzWs167BvqqeT9ajxXXOWrOotT8Zvb19q57pHpnWuerlP3zqbCKDeR8j2r+s5mbl34i1DJbmLcW+ITemlP6KBVO5zfm/TfvkF4j21ORne3el85yQv9yuVwut4V/m+zr9XrNOvHwyIz1fn+vMZ561xH6TXG9X4u8fDn787PLdjpvLcY1kp91OE/mWocOdKCfmY0uc1M9atZTkdG/g/XKBbpHT+dkrptmt6YG6j6XeuevQfhAj/LxiMjO1CvajRPtentaOfbKdW/N+GeqUOvwgd5ajYlivIrraIcx73ANK3gqMk+VcacI9DOc0t9T4XR+L/K1R1at7p6KzFNpvKkGWi18Rqtcz+wbvl3nKXvdW9ur9tnrvVOtZ0g12LOL851Jz7bwX415ZC2jyDbnN7vPkbrPo9a5pBv0qCDKtPCF+fsyzXtrseYoU+13r7ta55Bu4J8szOwn9XcXukD/LfK8txZ3bqLXvbU4tVfr+FIOXqj/Jsz7iDb3WeYlWt1bi1t7tY4rbRFmBFOEhT9jPBVvpmxzH4W6z6PW8aQuxuiT+qe/YzRhPt5u819pPnaqfea671Tnm8z1/kTqony6EKOe1o8u9hkbnwpWroHq87Cq9tXqbo3vLX2BZoZ6r995xorrdIO9NmItqPtr6j7HyF6n3seVKNjK4Np1wQvzPTyaB7Ud66+1r/Z9veoz6t1XmWL2CNYei2/14+1d6gBAX6Uac/Uwqz5+gMzKNedej8AjBVvFMQNUU7JB93xde+eQqzJOAIoGemv936y2U+BlHhsAj5Vu1KPegb4iADONBYDjyjfr0Z8ZHxmIka8dgL407C8zvwxm9y+rEeQA8Wjcd3b6+tZVhDlATP+svoCdVA+z6uMHiEwDf6LSaV2QA8Snkb+QPdiFOUAOmvmbsgW7IAfIRVM/IEOoC3KAnDT3kyKFuxAHyE+j/9DOwS7IAerQ8DvaIdyFOEBNmv9gvp4VgBmEwUSfhrvwBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAJf4PnGB43M/hn7YAAAAASUVORK5CYII=" style="width:190px;" alt="UCU Logo"/>
+    <div class="section-sub" style="text-align:center;">Pantalla principal de la app</div>
+  </div>
+  <div class="nb"><div class="ni active"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 9.5L12 3L21 9.5V20C21 20.6 20.6 21 20 21H15V16H9V21H4C3.4 21 3 20.6 3 20V9.5Z" stroke="#00bcd4" stroke-width="1.5" fill="none"/></svg><div>Inicio</div></div><div class="ni"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21C12 21 4 15 4 9C4 6.2 6.2 4 9 4C10.4 4 11.7 4.6 12.6 5.6" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M12 21C12 21 20 15 20 9C20 6.2 17.8 4 15 4C13.6 4 12.3 4.6 11.4 5.6" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg><div>Favoritos</div></div><div class="ni"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 10C6 6.7 8.7 4 12 4C15.3 4 18 6.7 18 10V15L20 17H4L6 15V10Z" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/><line x1="10" y1="20" x2="14" y2="20" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/></svg><div>Notificaciones</div></div><div class="ni"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><line x1="4" y1="6" x2="20" y2="6" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/><line x1="4" y1="18" x2="20" y2="18" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/></svg><div>Servicios</div></div></div>
+  <div style="height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:134px;height:5px;background:rgba(255,255,255,0.3);border-radius:3px;"></div></div>
+</div>
+
+<!-- MODAL: Popup info crear usuario app -->
+<div class="modal-overlay" id="modal-crear">
+  <div class="modal-box">
+    <div class="modal-title">Primera y única vez</div>
+    <div class="modal-body">Es la única vez que necesitás ingresar por acá. Te vamos a pedir que te autentiques con tu cuenta UCU para verificar tu identidad y crear tu usuario app.</div>
+    <div class="modal-btn-row">
+      <button class="modal-cancel" onclick="closeModal('modal-crear')">Cancelar</button>
+      <button class="modal-ok" onclick="closeModal('modal-crear');openMicrosoftLogin('s_crear_form')">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Popup info crear usuario app (flujo NO) -->
+<div class="modal-overlay" id="modal-crear2">
+  <div class="modal-box">
+    <div class="modal-title">Primera y única vez</div>
+    <div class="modal-body">Es la única vez que necesitás ingresar por acá. Te vamos a pedir que te autentiques con tu cuenta UCU para verificar tu identidad y crear tu usuario app.</div>
+    <div class="modal-btn-row">
+      <button class="modal-cancel" onclick="closeModal('modal-crear2')">Cancelar</button>
+      <button class="modal-ok" onclick="closeModal('modal-crear2');openMicrosoftLogin('s_crear_app2')">OK</button>
+    </div>
+  </div>
+</div>
+
 </div>
 <script>
 
-  const widgets = {horario:true,calificaciones:true,inscripcion:true,actividades:false,noticias:false,favoritos:false};
+  const MS_URL = "https://login.microsoftonline.com/e0f8e163-817a-41d6-b88e-7b4698fe5425/saml2?SAMLRequest=fZJPb6MwEMXv%2BymQ7wYDDhgrUEWtKkXbXtI%2FK%2B2lcsyQWgKbekyV7qdfQhqpvfRoa957o9%2Bb9dVx6KN38GicrUkaMxKB1a419lCTp8dbKshV82uNauizUW6m8Gp38DYBhmiDCD7MumtncRrAP4B%2FNxqednc1eQ1hRJkk0%2FFoRqQnfaxmdQwT1WCDVz1NYzWof26OO1gTXKzdkCxBiWlHDzjOvkCimznMWBWWDS%2B%2BvTsYGw9Ge4euC872xsLiAKwTkBY5FWmpKE%2Fbgu6FAFrueVGJDlY8W51jSLS9qclLta%2F2XGU5LQvBKNdVRkXOgOquzEsmirbkM5Ut4gRbi0HZUJOMZQVlnKarx3QlGZe8iCuW%2FyXR84VldmI507Uoz%2FRqMnkrnUKD0qoBUAYtHzb3d3IelaN3wWnXk%2BYMWy6BPrp1flDhZ%2B3px7S0W0blTNeEj2%2FZP8vVpUjSnMbOpcjPViSO8mtnL%2F2u5L%2Fv%2F3xs1snXRZvP5%2Fcjaf4D&RelayState=H4sIAAAAAAAAAE2SX3OiMBTFvwvPDRKEEHxTa_1T...";
   const wNames = {horario:'Mi horario',calificaciones:'Mis calificaciones',inscripcion:'Inscripción a cursos',actividades:'Actividades UCU',noticias:'Noticias UCU',favoritos:'Mis favoritos'};
+  const widgets = {horario:true,calificaciones:true,inscripcion:true,actividades:false,noticias:false,favoritos:false};
   let cur = 's1';
 
   function goTo(id) {
     document.getElementById(cur).classList.remove('active');
     cur = id;
     document.getElementById(id).classList.add('active');
-    if (id === 's8') updateSummary();
+    if (id === 's_listo') updateSummary();
   }
 
   function toggleW(item) {
@@ -413,8 +655,29 @@
     const s = document.getElementById('summary');
     s.innerHTML = '';
     Object.entries(widgets).forEach(([k,v]) => {
-      if(v) s.innerHTML += `<div style="display:flex;align-items:center;gap:8px;"><div style="width:6px;height:6px;border-radius:50%;background:#00bcd4;flex-shrink:0;"></div><div style="color:#ccc;font-size:13px;">${wNames[k]}</div></div>`;
+      if(v) s.innerHTML += `<div style="display:flex;align-items:center;gap:10px;"><div style="width:6px;height:6px;border-radius:50%;background:#00bcd4;flex-shrink:0;"></div><div style="color:rgba(255,255,255,0.7);font-size:15px;">${wNames[k]}</div></div>`;
     });
+  }
+
+  function openMicrosoftLogin(nextSid) {
+    const w = window.open(MS_URL, '_blank', 'width=500,height=650,scrollbars=yes');
+    if (!w) {
+      alert('Permitir ventanas emergentes para continuar.');
+      return;
+    }
+    goTo(nextSid);
+  }
+
+  function showCrearAppModal() {
+    document.getElementById('modal-crear').classList.add('show');
+  }
+
+  function showCrearAppModal2() {
+    document.getElementById('modal-crear2').classList.add('show');
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('show');
   }
 
 </script>
